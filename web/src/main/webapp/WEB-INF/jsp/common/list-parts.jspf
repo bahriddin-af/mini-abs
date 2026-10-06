@@ -1,0 +1,40 @@
+<%-- Status tablari va sahifalash: ${tabs}, ${result}, ${q} kerak. Sahifada c:set var="part" bilan tanlanadi --%>
+<c:choose>
+  <c:when test="${part == 'tabs'}">
+    <div><div class="status-tabs" role="tablist">
+      <c:forEach var="t" items="${tabs}">
+        <a href="${t.url}" role="tab" aria-selected="${t.active}" class="${t.active ? 'on' : ''}">${t.label}<span class="cnt">${t.count}</span></a>
+      </c:forEach>
+    </div></div>
+  </c:when>
+  <c:when test="${part == 'pager'}">
+    <div class="pager">
+      <form class="left" method="get" action="${q.url}">
+        <span>Sahifada</span>
+        <select aria-label="Sahifadagi qatorlar" data-goto-size>
+          <c:forEach var="n" items="10,20,50">
+            <option value="${fn:escapeXml(q.with('size', n))}" ${result.size == n ? 'selected' : ''}>${n}</option>
+          </c:forEach>
+        </select>
+        <span>Jami <b style="color:var(--ink)">${result.total}</b> ta yozuvdan ${result.from}–${result.to}</span>
+      </form>
+      <div class="pages">
+        <c:choose>
+          <c:when test="${result.page > 1}"><a href="${fn:escapeXml(q.with('page', result.page - 1))}"><svg class="i"><use href="#i-chev-left"/></svg>Oldingi</a></c:when>
+          <c:otherwise><span class="dis"><svg class="i"><use href="#i-chev-left"/></svg>Oldingi</span></c:otherwise>
+        </c:choose>
+        <c:forEach var="p" items="${result.pageList}">
+          <c:choose>
+            <c:when test="${p == 0}"><span class="gap">…</span></c:when>
+            <c:when test="${p == result.page}"><span class="cur" aria-current="page">${p}</span></c:when>
+            <c:otherwise><a href="${fn:escapeXml(q.with('page', p))}">${p}</a></c:otherwise>
+          </c:choose>
+        </c:forEach>
+        <c:choose>
+          <c:when test="${result.page < result.pages}"><a href="${fn:escapeXml(q.with('page', result.page + 1))}">Keyingi<svg class="i"><use href="#i-chev-right"/></svg></a></c:when>
+          <c:otherwise><span class="dis">Keyingi<svg class="i"><use href="#i-chev-right"/></svg></span></c:otherwise>
+        </c:choose>
+      </div>
+    </div>
+  </c:when>
+</c:choose>

@@ -1,0 +1,44 @@
+    </main>
+  </div>
+</div>
+
+<%-- Umumiy tasdiqlash oynasi (bloklash va h.k.). Maydonlar JS orqali data-* atributlardan to'ldiriladi --%>
+<div class="overlay" id="confirmModal" hidden>
+  <form class="modal sm" method="post" id="confirmForm" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
+    <input type="hidden" name="_csrf" value="${sessionScope.csrf}">
+    <input type="hidden" name="back" value="">
+    <div id="cfFields"></div>
+    <div class="modal-head"><div><h2 id="cfTitle"></h2><p id="cfText"></p></div><button type="button" class="icon-btn" data-close aria-label="Yopish"><svg class="i"><use href="#i-x"/></svg></button></div>
+    <div class="modal-body" id="cfReasonBox" hidden>
+      <div class="field"><label for="cfReason">Sabab <span class="req">*</span></label>
+        <select id="cfReason" name="reason"><option>Sud qarori</option><option>Soliq organi talabi</option><option>Mijoz arizasi</option><option>Shubhali operatsiya</option></select></div>
+    </div>
+    <div class="modal-foot"><button type="button" class="btn btn-outline" data-close>Bekor qilish</button><button type="submit" class="btn" id="cfOk"></button></div>
+  </form>
+</div>
+
+<div class="toasts" id="toasts" aria-live="polite">
+  <c:if test="${not empty sessionScope.flash}">
+    <div class="toast"><svg class="i"><use href="#i-check-circle"/></svg><span><c:out value="${sessionScope.flash}"/></span></div>
+    <c:remove var="flash" scope="session"/>
+  </c:if>
+  <c:if test="${not empty sessionScope.flashError}">
+    <div class="toast err"><svg class="i"><use href="#i-alert"/></svg><span><c:out value="${sessionScope.flashError}"/></span></div>
+    <c:remove var="flashError" scope="session"/>
+  </c:if>
+</div>
+
+<div class="help" id="helpPanel" hidden>
+  <header><b>Yordam</b><small>Texnik yordam: ichki raqam 1020</small></header>
+  <ul>
+    <li>Qidiruvga o'tish <kbd>/</kbd></li>
+    <li>Pul o'tkazish <kbd>Alt + T</kbd></li>
+    <li>Oynani yopish <kbd>Esc</kbd></li>
+  </ul>
+</div>
+<button class="fab" id="fab" type="button" aria-label="Yordam"><svg class="i"><use href="#i-help"/></svg></button>
+
+<script>window.APP = { ctx: '${ctx}' };</script>
+<script src="${ctx}/assets/app.js"></script>
+</body>
+</html>

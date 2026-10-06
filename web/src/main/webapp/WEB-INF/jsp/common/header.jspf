@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<%@ include file="head.jspf" %>
+</head>
+<body>
+<%@ include file="icons.jspf" %>
+<div class="app" id="app">
+  <div class="backdrop" id="backdrop"></div>
+  <aside class="sidebar" aria-label="Asosiy menyu">
+    <div class="brand"><div class="logo"><svg class="i"><use href="#i-bank"/></svg></div><div><b>Mini-ABS</b><small>Bank operatori tizimi</small></div></div>
+    <nav class="menu" id="menu">
+      <div class="menu-title">Bo'limlar</div>
+      <div class="group${page == 'clients' ? ' open has-active' : ''}">
+        <button type="button" aria-expanded="${page == 'clients'}"><svg class="i"><use href="#i-users"/></svg><span>Mijozlar</span><svg class="i chev"><use href="#i-chev-down"/></svg></button>
+        <div class="sub"><a href="${ctx}/clients" class="${page == 'clients' ? 'on' : ''}">Mijozlar ro'yxati</a></div>
+      </div>
+      <div class="group${page == 'accounts' ? ' open has-active' : ''}">
+        <button type="button" aria-expanded="${page == 'accounts'}"><svg class="i"><use href="#i-wallet"/></svg><span>Hisob raqamlar</span><svg class="i chev"><use href="#i-chev-down"/></svg></button>
+        <div class="sub"><a href="${ctx}/accounts" class="${page == 'accounts' ? 'on' : ''}">Barcha hisoblar</a></div>
+      </div>
+      <div class="group${page == 'transfer' || page == 'journal' ? ' open has-active' : ''}">
+        <button type="button" aria-expanded="${page == 'transfer' || page == 'journal'}"><svg class="i"><use href="#i-swap"/></svg><span>Operatsiyalar</span><svg class="i chev"><use href="#i-chev-down"/></svg></button>
+        <div class="sub">
+          <a href="${ctx}/transfer" class="${page == 'transfer' ? 'on' : ''}">Pul o'tkazish</a>
+          <a href="${ctx}/journal" class="${page == 'journal' ? 'on' : ''}">Operatsiyalar jurnali</a>
+        </div>
+      </div>
+    </nav>
+    <div class="side-foot"><span class="dot"></span><span>Operatsion kun ochiq</span></div>
+  </aside>
+
+  <div class="main">
+    <header class="header">
+      <button class="icon-btn" id="burger" type="button" aria-label="Menyuni yig'ish"><svg class="i"><use href="#i-menu"/></svg></button>
+      <div class="hdr-title"><b><c:out value="${pageTitle}"/></b><small>Toshkent filiali · MFO 00014</small></div>
+      <div class="spacer"></div>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Mavzuni almashtirish"><svg class="i"><use href="#i-moon"/></svg></button>
+      <div class="profile">
+        <button id="profileBtn" type="button" aria-haspopup="true" aria-expanded="false">
+          <div class="avatar">${f:initials(sessionScope.user.fullName)}</div>
+          <span class="who"><b><c:out value="${sessionScope.user.fullName}"/></b><small>${sessionScope.user.admin ? 'Administrator' : 'Operator'}</small></span>
+          <svg class="i" style="width:16px;color:var(--faint)"><use href="#i-chev-down"/></svg>
+        </button>
+        <div class="dropdown" id="profileMenu" hidden>
+          <div class="dd-title"><c:out value="${sessionScope.user.login}"/></div>
+          <form method="post" action="${ctx}/logout">
+            <input type="hidden" name="_csrf" value="${sessionScope.csrf}">
+            <button type="submit" style="color:var(--red)"><svg class="i"><use href="#i-logout"/></svg>Chiqish</button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <main class="content">

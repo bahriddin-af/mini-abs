@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-jsptaglibrary_3_0.xsd"
+        version="3.0">
+  <tlib-version>1.0</tlib-version>
+  <short-name>f</short-name>
+  <uri>http://miniabs.uz/functions</uri>
+
+  <function>
+    <name>money</name>
+    <function-class>uz.miniabs.web.Fmt</function-class>
+    <function-signature>java.lang.String money(java.lang.Object)</function-signature>
+  </function>
+  <function>
+    <name>money0</name>
+    <function-class>uz.miniabs.web.Fmt</function-class>
+    <function-signature>java.lang.String money0(java.lang.Object)</function-signature>
+  </function>
+  <function>
+    <name>millions</name>
+    <function-class>uz.miniabs.web.Fmt</function-class>
+    <function-signature>java.lang.String millions(java.lang.Object)</function-signature>
+  </function>
+  <function>
+    <name>phone</name>
+    <function-class>uz.miniabs.web.Fmt</function-class>
+    <function-signature>java.lang.String phone(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>initials</name>
+    <function-class>uz.miniabs.web.Fmt</function-class>
+    <function-signature>java.lang.String initials(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>date</name>
+    <function-class>uz.miniabs.web.Fmt</function-class>
+    <function-signature>java.lang.String date(java.time.LocalDateTime)</function-signature>
+  </function>
+  <function>
+    <name>dateTime</name>
+    <function-class>uz.miniabs.web.Fmt</function-class>
+    <function-signature>java.lang.String dateTime(java.time.LocalDateTime)</function-signature>
+  </function>
+  <function>
+    <name>time</name>
+    <function-class>uz.miniabs.web.Fmt</function-class>
+    <function-signature>java.lang.String time(java.time.LocalDateTime)</function-signature>
+  </function>
+</taglib>
